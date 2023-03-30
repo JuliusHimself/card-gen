@@ -92,7 +92,7 @@ export default function Home() {
       <main>
          <Box display={'flex'} flexDir={'column'} justifyContent={'center'} alignItems={'center'} p={'12px'}>
             <Text fontSize={'40px'} mb={'30px'}>AI Card Art</Text>
-             <Text mb={'20px'}>Write your desired theme text and let the AI generate a card cover for you. Feel free to get creative.</Text>
+             <Text mb={'20px'}>Write your desired theme text and let the AI generate some card art for you. Feel free to get creative.</Text>
              <Text mb={'20px'}>Examples: <strong><i>Roses and ice cream</i></strong> or <strong><i>Dogs in space</i></strong> </Text>
              <Text mb={'20px'}>The AI should be able to read any description and generate a cover for it...</Text>
              <Input placeholder='Write theme prompt here' onChange={handleChange} width={'400px'} mb={'30px'} />
