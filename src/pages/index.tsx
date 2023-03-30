@@ -12,7 +12,7 @@ import {
     executeGenerationRequest,
     onGenerationComplete,
 } from "../helpers";
-import {useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 
 // This is a NodeJS-specific requirement - browsers implementations should omit this line.
 GRPCWeb.setDefaultTransport(NodeHttpTransport());
@@ -32,7 +32,11 @@ export default function Home() {
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const handleChange = (event) => setValue(event.target.value)
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const target = event.target as HTMLButtonElement;
+        if (target) setValue(target.value)
+
+    }
 
     const request = buildGenerationRequest("stable-diffusion-512-v2-1", {
         type: "text-to-image",
@@ -50,12 +54,13 @@ export default function Home() {
     });
 
 
-    const getNewImage = (prom) => {
+    const getNewImage = () => {
         console.log(`running`, value)
         setLoading(true)
         executeGenerationRequest(client, request, metadata)
             .then((res) => {
                 // console.log('res', res)
+                // @ts-ignore
                 return res.imageArtifacts.forEach((artifact) => {
                     // console.log(`image-${artifact.getSeed()}.png`)
                     // console.log(artifact.getBinary_asB64())
@@ -86,7 +91,7 @@ export default function Home() {
       </Head>
       <main>
          <Box display={'flex'} flexDir={'column'} justifyContent={'center'} alignItems={'center'} p={'12px'}>
-           <Text fontSize={'40px'} mb={'30px'}>AI Card Cover Generator</Text>
+            <Text fontSize={'40px'} mb={'30px'}>AI Card Cover Generator</Text>
              <Text mb={'20px'}>Write your desired theme text and let the AI generate a card cover for you. Feel free to get creative.</Text>
              <Text mb={'20px'}>Examples: <i>Roses and ice cream</i> or <i>Dogs in space</i></Text>
              <Text mb={'20px'}>The AI should be able to read any description and generate a cover for it...</Text>
