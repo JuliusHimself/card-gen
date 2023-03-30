@@ -95,8 +95,8 @@ export default function Home() {
              <Text mb={'20px'}>Write your desired theme text and let the AI generate some artwork for you. Feel free to get creative.</Text>
              <Text mb={'20px'}>Examples: <strong><i>Roses and ice cream</i></strong> or <strong><i>Dogs in space</i></strong> </Text>
              <Text mb={'20px'}>The AI should be able to read any description and generate artwork for it...</Text>
-             <Input placeholder='Write theme prompt here' onChange={handleChange} width={'400px'} mb={'30px'} />
-             <Button onClick={getNewImage} width={'400px'}  mb={'30px'}>{loading ? <Spinner speed='0.55s' /> : 'Generate Image'}</Button>
+             <Input placeholder='Example: ice cream holiday' onChange={handleChange} width={'400px'} mb={'30px'} />
+             <Button onClick={getNewImage} width={'400px'}  mb={'30px'}>{loading ? <Spinner speed='0.55s' /> : 'Generate Artwork'}</Button>
 
 
              {img !== '' ? <img src={`data:image/png;base64, ${img}`} style={divStyle}/> : null}
